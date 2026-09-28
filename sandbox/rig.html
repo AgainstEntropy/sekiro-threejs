@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rig sandbox — characters & props</title>
+  <link rel="icon" href="data:,">
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #0c0d12; color: #d8d2c4; font: 12px/1.4 ui-monospace, Menlo, monospace; }
+    #app { position: fixed; inset: 0; }
+    #hud { position: fixed; left: 10px; top: 8px; pointer-events: none; white-space: pre; text-shadow: 0 1px 2px #000; }
+    #help { position: fixed; right: 10px; top: 8px; pointer-events: none; white-space: pre; text-align: right; opacity: 0.7; }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <div id="hud"></div>
+  <div id="help">params: view=front|side|back|three4|close|game|props  spin=1  focus=wolf
+clip=idle  pose=attack_1  poseT=0.42  row2=0  run=1  glow=ff2020  flash=1
+keys: 1-6 views · space spin · g glow · f flash · p gourd · b bow · a arrow</div>
+  <script type="module" src="./rig.js"></script>
+</body>
+</html>

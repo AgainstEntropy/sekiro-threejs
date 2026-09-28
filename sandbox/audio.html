@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Audio Sandbox</title>
+  <style>
+    :root { --bg: #0b0c10; --panel: #15171d; --line: #2a2d36; --text: #e8e4da; --muted: #9a958a; --accent: #c8422c; --gold: #d8b25a; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.4 ui-sans-serif, system-ui, -apple-system, "Hiragino Sans", sans-serif; }
+    header { padding: 16px 20px; border-bottom: 1px solid var(--line); display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    h1 { margin: 0; font-size: 18px; letter-spacing: 0.04em; }
+    h1 span { color: var(--accent); margin-right: 8px; }
+    main { padding: 16px 20px; display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+    section { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+    h2 { margin: 0 0 10px; font-size: 13px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; }
+    .btns { display: flex; flex-wrap: wrap; gap: 6px; }
+    button { background: #1f222a; color: var(--text); border: 1px solid #343845; border-radius: 5px; padding: 6px 10px; font: inherit; font-size: 13px; cursor: pointer; }
+    button:hover { border-color: var(--gold); }
+    button.on { background: var(--accent); border-color: var(--accent); }
+    button.big { padding: 9px 16px; font-size: 14px; }
+    label { display: flex; align-items: center; gap: 8px; margin: 6px 0; color: var(--muted); }
+    label input[type=range] { flex: 1; }
+    #stats, #testOut { font: 12px/1.45 ui-monospace, Menlo, monospace; white-space: pre-wrap; color: var(--muted); }
+    canvas { width: 100%; height: 90px; background: #08090c; border-radius: 4px; display: block; }
+    table { border-collapse: collapse; width: 100%; font: 12px ui-monospace, Menlo, monospace; }
+    td, th { padding: 2px 6px; border-bottom: 1px solid var(--line); text-align: left; }
+    .bad { color: #ff6b5a; } .ok { color: #7fc27a; }
+    .wide { grid-column: 1 / -1; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><span>音</span>Sekiro audio sandbox</h1>
+    <button id="unlock" class="big">Unlock audio</button>
+    <button id="mute">Mute (M)</button>
+    <button id="runTest">Run offline test</button>
+    <span id="state" style="color:var(--muted)">locked</span>
+  </header>
+  <main>
+    <section><h2>Combat</h2><div class="btns" id="g-combat"></div></section>
+    <section><h2>Movement &amp; tools</h2><div class="btns" id="g-move"></div></section>
+    <section><h2>Voices &amp; moments</h2><div class="btns" id="g-moment"></div></section>
+    <section><h2>Boss &amp; ranged</h2><div class="btns" id="g-boss"></div></section>
+    <section><h2>Ambient &amp; UI</h2><div class="btns" id="g-amb"></div></section>
+    <section>
+      <h2>Music</h2>
+      <div class="btns" id="g-music"></div>
+      <label>Crossfade <input id="fade" type="range" min="0.1" max="6" step="0.1" value="2" /><span id="fadeV">2.0 s</span></label>
+    </section>
+    <section>
+      <h2>Game events</h2>
+      <div class="btns" id="g-events"></div>
+    </section>
+    <section>
+      <h2>Position &amp; zone</h2>
+      <label>Source X (left/right) <input id="px" type="range" min="-20" max="20" step="0.5" value="0" /><span id="pxV">0</span></label>
+      <label>Source distance <input id="pz" type="range" min="1" max="60" step="0.5" value="4" /><span id="pzV">4 m</span></label>
+      <label>Boss field (wind) <input id="field" type="range" min="0" max="1" step="0.01" value="0" /><span id="fieldV">0</span></label>
+      <label>SFX <input id="vsfx" type="range" min="0" max="1" step="0.01" value="1" /></label>
+      <label>Music <input id="vmusic" type="range" min="0" max="1" step="0.01" value="1" /></label>
+      <label>Ambient <input id="vamb" type="range" min="0" max="1" step="0.01" value="1" /></label>
+    </section>
+    <section><h2>Output</h2><canvas id="scope" width="680" height="180"></canvas><div id="stats"></div></section>
+    <section class="wide"><h2>Offline render test</h2><div id="testOut">Press “Run offline test” (or open with ?test).</div></section>
+  </main>
+  <script type="module" src="./audio.js"></script>
+</body>
+</html>

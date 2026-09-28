@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>HUD sandbox · 隻狼</title>
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #07080c; }
+    /* stand-in for the 3D scene: dusk sky, moon, dark ground */
+    #bg { position: fixed; inset: 0;
+      background:
+        radial-gradient(circle at 72% 26%, rgba(255,246,222,0.95) 0 4.2vh, rgba(255,220,170,0.25) 4.4vh, rgba(255,190,120,0) 18vh),
+        linear-gradient(180deg, #1b2240 0%, #3b3552 30%, #b3624a 50%, #3a2a26 51%, #1c1612 70%, #0d0a08 100%); }
+    .fig { position: fixed; width: 5vh; height: 16vh; background: linear-gradient(#141418, #0b0b0e); border-radius: 2vh 2vh 0.6vh 0.6vh; transform: translate(-50%, -100%); opacity: .85; }
+    #legend { position: fixed; right: 12px; top: 12px; z-index: 100; font: 12px/1.45 ui-monospace, monospace; color: #cfc6b2;
+      background: rgba(0,0,0,0.55); padding: 8px 10px; border: 1px solid rgba(255,255,255,0.12); columns: 2; column-gap: 18px; }
+    #legend b { color: #fff; display: inline-block; min-width: 1.4em; }
+  </style>
+</head>
+<body>
+  <div id="bg"></div>
+  <div id="legend"></div>
+  <script type="module" src="./hud.js"></script>
+</body>
+</html>
